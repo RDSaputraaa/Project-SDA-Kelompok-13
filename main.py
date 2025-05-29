@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 class MainApp:
-    def _init_(self, root):
+    def __init__(self, root):
         self.root = root
         self.root.title("Project SDA")
         self.root.geometry("800x600")
@@ -72,7 +72,7 @@ class MainApp:
         )
         info_label.place(relx=0.5, rely=0.5, anchor="center")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     root = tk.Tk()
     app = MainApp(root)
     root.mainloop()

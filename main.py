@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 class MainApp:
-    def __init__(self, root):
+    def _init_(self, root):
         self.root = root
         self.root.title("Project SDA")
         self.root.geometry("800x600")
@@ -38,19 +38,41 @@ class MainApp:
             pady=10
         )
         self.enter_button.place(relx=0.5, rely=0.45, anchor="center")
-        
-        self.enter_button = tk.Button(
+
+        self.explain_button = tk.Button(
             self.root,
             text="PENJELASAN",
             font=("courier new", 18),
             bg="sky blue",
             fg="black",
             padx=20,
-            pady=10
+            pady=10,
+            command=self.show_info
         )
-        self.enter_button.place(relx=0.5, rely=0.55, anchor="center")
+        self.explain_button.place(relx=0.5, rely=0.55, anchor="center")
 
-if __name__ == "__main__":
+    def show_info(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        info_label = tk.Label(
+            self.root,
+            text="Penjelasan Project Kelompok 13:\n\n"
+                 "Pada project ini kami membuat sebuah game MATEMATIKA\n"
+                 "Berikut cara bermainnya:\n"
+                 "1. Masukkan nama pemain untuk memulai permainan.\n"
+                 "2. Setelah masuk ke permainan, kamu akan diberi\n   sebuah soal dengan 4 pilihan jawab.\n"
+                 "3. Untuk setiap soal yang benar akan diberi\n   10 POIN, sedangkan Jika Jawaban\n   salah akan diberikan 0 POIN.\n",
+            font=("courier new", 18),
+            fg="black",
+            bg="lightyellow",
+            padx=20,
+            pady=20,
+            justify="left"
+        )
+        info_label.place(relx=0.5, rely=0.5, anchor="center")
+
+if _name_ == "_main_":
     root = tk.Tk()
     app = MainApp(root)
     root.mainloop()

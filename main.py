@@ -17,7 +17,7 @@ class MainApp:
 
         self.welcome_label = tk.Label(
             self.root,
-            text="Selamat Datang",
+            text="Selamat Datang\n di Project Kelompok 13",
             font=("courier new", 24),
             fg="black",
             bg="sky blue",
@@ -27,6 +27,28 @@ class MainApp:
             pady=10
         )
         self.welcome_label.place(relx=0.5, rely=0.15, anchor="center")
+
+        self.enter_button = tk.Button(
+            self.root,
+            text="MULAI",
+            font=("courier new", 18),
+            bg="sky blue",
+            fg="black",
+            padx=20,
+            pady=10
+        )
+        self.enter_button.place(relx=0.5, rely=0.45, anchor="center")
+        
+        self.enter_button = tk.Button(
+            self.root,
+            text="PENJELASAN",
+            font=("courier new", 18),
+            bg="sky blue",
+            fg="black",
+            padx=20,
+            pady=10
+        )
+        self.enter_button.place(relx=0.5, rely=0.55, anchor="center")
 
 if __name__ == "__main__":
     root = tk.Tk()

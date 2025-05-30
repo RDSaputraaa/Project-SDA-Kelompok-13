@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 
 class MainApp:
@@ -12,8 +13,18 @@ class MainApp:
         bg_image = bg_image.resize((800, 600))
         self.bg_photo = ImageTk.PhotoImage(bg_image)
 
-        bg_label = tk.Label(self.root, image=self.bg_photo)
-        bg_label.place(relwidth=1, relheight=1)
+        self.bg_label = tk.Label(self.root, image=self.bg_photo)
+        self.bg_label.place(relwidth=1, relheight=1)
+
+        self.show_main_menu()
+
+    def clear_widgets(self):
+        for widget in self.root.winfo_children():
+            if widget != self.bg_label:
+                widget.destroy()
+
+    def show_main_menu(self):
+        self.clear_widgets()
 
         self.welcome_label = tk.Label(
             self.root,
@@ -33,11 +44,12 @@ class MainApp:
             text="MULAI",
             font=("courier new", 18),
             bg="sky blue",
+            relief="raised",
             fg="black",
             padx=20,
             pady=10
         )
-        self.enter_button.place(relx=0.5, rely=0.45, anchor="center")
+        self.enter_button.place(relx=0.5, rely=0.43, anchor="center")
 
         self.explain_button = tk.Button(
             self.root,
@@ -45,15 +57,28 @@ class MainApp:
             font=("courier new", 18),
             bg="sky blue",
             fg="black",
+            relief="raised",
             padx=20,
             pady=10,
             command=self.show_info
         )
-        self.explain_button.place(relx=0.5, rely=0.55, anchor="center")
+        self.explain_button.place(relx=0.5, rely=0.56, anchor="center")
+
+        self.exit_button = tk.Button(
+            self.root,
+            text="KELUAR",
+            font=("courier new", 18),
+            bg="sky blue",
+            fg="black",
+            relief="raised",
+            padx=20,
+            pady=10,
+            command=self.root.quit
+        )
+        self.exit_button.place(relx=0.5, rely=0.69, anchor="center")
 
     def show_info(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
+        self.clear_widgets()
 
         info_label = tk.Label(
             self.root,
@@ -65,12 +90,27 @@ class MainApp:
                  "3. Untuk setiap soal yang benar akan diberi\n   10 POIN, sedangkan Jika Jawaban\n   salah akan diberikan 0 POIN.\n",
             font=("courier new", 18),
             fg="black",
-            bg="lightyellow",
+            bg="sky blue",
+            bd=5,
+            relief="raised",
             padx=20,
             pady=20,
             justify="left"
         )
-        info_label.place(relx=0.5, rely=0.5, anchor="center")
+        info_label.place(relx=0.5, rely=0.4, anchor="center")
+
+        back_button = tk.Button(
+            self.root,
+            text="KEMBALI",
+            font=("courier new", 18),
+            bg="sky blue",
+            fg="black",
+            relief="raised",
+            padx=20,
+            pady=10,
+            command=self.show_main_menu
+        )
+        back_button.place(relx=0.5, rely=0.75, anchor="center")
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -50,7 +50,8 @@ class MainApp:
             relief="raised",
             fg="black",
             padx=50,
-            pady=20
+            pady=20,
+            command=self.show_perkenalan
         )
         self.enter_button.place(relx=0.5, rely=0.43, anchor="center")
 
@@ -90,7 +91,7 @@ class MainApp:
                  "Berikut cara bermainnya:\n"
                  "1. Masukkan nama pemain untuk memulai permainan.\n"
                  "2. Setelah masuk ke permainan, kamu akan diberi\n   sebuah soal dengan 4 pilihan jawab.\n"
-                 "3. Untuk setiap soal yang benar akan diberi\n   10 POIN, sedangkan Jika Jawaban\n   salah akan diberikan 0 POIN.\n",
+                 "3. Untuk setiap soal yang benar akan diberi\n   10 POIN, sedangkan Jika Jawaban\n   salah akan diberikan 0 POIN.",
             font=("courier new", 22),
             fg="black",
             bg="sky blue",
@@ -101,6 +102,40 @@ class MainApp:
             justify="left"
         )
         info_label.place(relx=0.5, rely=0.4, anchor="center")
+
+        back_button = tk.Button(
+            self.root,
+            text="KEMBALI",
+            font=("courier new", 22),
+            bg="sky blue",
+            fg="black",
+            relief="raised",
+            padx=50,
+            pady=20,
+            command=self.show_main_menu
+        )
+        back_button.place(relx=0.5, rely=0.75, anchor="center")
+
+    def show_perkenalan(self):
+        self.clear_widgets()
+
+        perkenalan_label = tk.Label(
+            self.root,
+            text="Perkenalan Anggota Kelompok 13:\n\n"
+                 "1. Rizky Dwi Saputra (2417051009)\n"
+                 "2. Meidina Aulia (2417051038)\n"
+                 "3. Naura Azura Grahyta M (2417051005)\n"
+                 "4. Alfin Lambok Kristiano Silitonga (2417053001)",
+            font=("courier new", 24),
+            fg="black",
+            bg="sky blue",
+            bd=5,
+            relief="raised",
+            padx=40,
+            pady=30,
+            justify="left"
+        )
+        perkenalan_label.place(relx=0.5, rely=0.4, anchor="center")
 
         back_button = tk.Button(
             self.root,

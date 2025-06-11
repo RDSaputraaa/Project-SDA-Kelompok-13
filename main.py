@@ -90,8 +90,9 @@ class MainApp:
                  "Pada project ini kami membuat sebuah game MATEMATIKA\n"
                  "Berikut cara bermainnya:\n"
                  "1. Masukkan nama pemain untuk memulai permainan.\n"
-                 "2. Setelah masuk ke permainan, kamu akan diberi\n   sebuah soal dengan 4 pilihan jawab.\n"
-                 "3. Untuk setiap soal yang benar akan diberi\n   10 POIN, sedangkan Jika Jawaban\n   salah akan diberikan 0 POIN.",
+                 "2. Setelah itu akan diberikan 4 soal. \n"
+                 "3. Untuk setiap soal yang benar akan diberikan 25 POIN. \n" 
+                 "4. Jika Jawaban salah akan diberikan 0 POIN.",
             font=("courier new", 22),
             fg="black",
             bg="sky blue",

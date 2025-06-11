@@ -86,7 +86,7 @@ class MainApp:
 
         info_label = tk.Label(
             self.root,
-            text="Penjelasan Project Kelompok 13:\n\n"
+            text="📝Penjelasan Project Kelompok 13:\n\n"
                  "Pada project ini kami membuat sebuah game MATEMATIKA\n"
                  "Berikut cara bermainnya:\n"
                  "1. Masukkan nama pemain untuk memulai permainan.\n"
@@ -121,7 +121,7 @@ class MainApp:
 
         perkenalan_label = tk.Label(
             self.root,
-            text="Perkenalan Anggota Kelompok 13:\n\n"
+            text="👥 Perkenalan Anggota Kelompok 13:\n\n"
                  "1. Rizky Dwi Saputra (2417051009)\n"
                  "2. Meidina Aulia (2417051038)\n"
                  "3. Naura Azura Grahyta M (2417051005)\n"

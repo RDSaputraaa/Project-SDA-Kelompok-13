@@ -9,8 +9,11 @@ Project ini dikembangkan menggunakan Tkinter (GUI), serta memanfaatkan Pillow (P
 Tujuannya 🎯 
 
   ~ Memberikan alternatif pembelajaran matematika yang menyenangkan.
+
   ~ Meningkatkan pemahaman berhitung melalui soal-soal matematika sederhana.
+
   ~ Mengenalkan konsep pengembangan antarmuka pengguna (UI) dalam Python.
+
   ~ Sebagai tugas akhir mata kuliah Struktur Data Algoritma
 
 Fitur dalam Project 🧩
@@ -30,9 +33,13 @@ Struktur Antarmuka Pengguna (UI) 🖼️
      Navigasi antar tampilan dilakukan dengan metode clear_widgets() yang membersihkan widget dinamis.
 
 Anggota Kelompok 👥 
+
     ~ Rizky Dwi Saputra (2417051009)
+
     ~ Alfin Lambok Kristiano Silitonga (2417053001)
+
     ~ Meidina Aulia (2417051038)
+
     ~ Naura Azura Grahyta M (2417051005)
 
 

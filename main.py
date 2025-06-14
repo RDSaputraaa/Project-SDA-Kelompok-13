@@ -1,12 +1,11 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import messagebox
 from PIL import Image, ImageTk
 
 class MainApp:
-    def __init__(self, root):
+    def _init_(self, root):
         self.root = root
         self.root.title("Project SDA")
-
         self.root.attributes('-fullscreen', True)
 
         self.screen_width = self.root.winfo_screenwidth()
@@ -29,7 +28,7 @@ class MainApp:
     def show_main_menu(self):
         self.clear_widgets()
 
-        self.welcome_label = tk.Label(
+        welcome_label = tk.Label(
             self.root,
             text="Selamat Datang\n di Project Kelompok 13",
             font=("courier new", 36),
@@ -40,22 +39,22 @@ class MainApp:
             padx=50,
             pady=20
         )
-        self.welcome_label.place(relx=0.5, rely=0.2, anchor="center")
+        welcome_label.place(relx=0.5, rely=0.2, anchor="center")
 
-        self.enter_button = tk.Button(
+        enter_button = tk.Button(
             self.root,
             text="MULAI",
             font=("courier new", 22),
             bg="sky blue",
-            relief="raised",
             fg="black",
+            relief="raised",
             padx=50,
             pady=20,
             command=self.show_perkenalan
         )
-        self.enter_button.place(relx=0.5, rely=0.43, anchor="center")
+        enter_button.place(relx=0.5, rely=0.43, anchor="center")
 
-        self.explain_button = tk.Button(
+        explain_button = tk.Button(
             self.root,
             text="PENJELASAN",
             font=("courier new", 22),
@@ -66,9 +65,9 @@ class MainApp:
             pady=20,
             command=self.show_info
         )
-        self.explain_button.place(relx=0.5, rely=0.56, anchor="center")
+        explain_button.place(relx=0.5, rely=0.56, anchor="center")
 
-        self.exit_button = tk.Button(
+        exit_button = tk.Button(
             self.root,
             text="KELUAR",
             font=("courier new", 22),
@@ -79,7 +78,7 @@ class MainApp:
             pady=20,
             command=self.root.quit
         )
-        self.exit_button.place(relx=0.5, rely=0.69, anchor="center")
+        exit_button.place(relx=0.5, rely=0.69, anchor="center")
 
     def show_info(self):
         self.clear_widgets()
@@ -136,22 +135,75 @@ class MainApp:
             pady=30,
             justify="left"
         )
-        perkenalan_label.place(relx=0.5, rely=0.4, anchor="center")
+        perkenalan_label.place(relx=0.5, rely=0.35, anchor="center")
 
-        back_button = tk.Button(
+        next_button = tk.Button(
             self.root,
-            text="KEMBALI",
+            text="Mulai",
             font=("courier new", 22),
             bg="sky blue",
             fg="black",
             relief="raised",
             padx=50,
             pady=20,
-            command=self.show_main_menu
+            command=self.start_game
         )
-        back_button.place(relx=0.5, rely=0.75, anchor="center")
+        next_button.place(relx=0.5, rely=0.65, anchor="center")
 
-if __name__ == "__main__":
+    def start_game(self):
+        self.player_name = None
+        self.ask_name()
+
+    def ask_name(self):
+        self.clear_widgets()
+
+        frame = tk.Frame(
+            self.root,
+            bg="sky blue",
+            bd=5,
+            relief="raised",
+            padx=50,
+            pady=30
+        )
+        frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        title_label = tk.Label(
+            frame,
+            text="Masukkan Nama:",
+            font=("courier new", 24),
+            bg="sky blue",
+            fg="black"
+        )
+        title_label.pack(pady=(0, 20))
+
+        name_label = tk.Label(
+            frame,
+            text="Nama:",
+            font=("courier new", 24),
+            bg="sky blue",
+            fg="black"
+        )
+        name_label.pack(anchor="w")
+
+        self.name_entry = tk.Entry(
+            frame,
+            font=("courier new", 20),
+            width=30,
+            relief="raised"
+        )
+        self.name_entry.pack(pady=5)
+
+        start_btn = tk.Button(
+            frame,
+            text="MULAI GAME",
+            font=("courier new", 20),
+            bg="sky blue",
+            fg="black",
+            relief="raised",
+        )
+        start_btn.pack(pady=(20, 0))
+
+if _name_ == "_main_":
     root = tk.Tk()
     app = MainApp(root)
-    root.mainloop()
+    root.mainloop()

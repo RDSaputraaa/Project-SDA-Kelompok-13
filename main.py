@@ -3,7 +3,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 
 class MainApp:
-    def _init_(self, root):
+    def __init__(self, root):
         self.root = root
         self.root.title("Project SDA")
         self.root.attributes('-fullscreen', True)
@@ -203,7 +203,7 @@ class MainApp:
         )
         start_btn.pack(pady=(20, 0))
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     root = tk.Tk()
     app = MainApp(root)
     root.mainloop()

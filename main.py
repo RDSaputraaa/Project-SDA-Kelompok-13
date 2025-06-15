@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 from BE import simpan_data
 
 class MainApp:
-    def _init_(self, root):
+    def __init__(self, root):
         self.root = root
         self.root.title("Project SDA")
         self.root.attributes('-fullscreen', True)
@@ -238,7 +238,7 @@ class MainApp:
         self.time_left = 0
         self.time_var.set("00:00")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     root = tk.Tk()
     app = MainApp(root)
-    root.mainloop()
+    root.mainloop()

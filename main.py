@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+from BE import simpan_data
 
 class MainApp:
     def __init__(self, root):
@@ -26,7 +27,6 @@ class MainApp:
 
     def show_main_menu(self):
         self.clear_widgets()
-        self.root.configure(bg="SystemButtonFace")
         self.bg_label = tk.Label(self.root, image=self.bg_photo)
         self.bg_label.place(relwidth=1, relheight=1)
 
@@ -71,7 +71,6 @@ class MainApp:
 
     def show_perkenalan(self):
         self.clear_widgets()
-        self.root.configure(bg="SystemButtonFace")
         self.bg_label = tk.Label(self.root, image=self.bg_photo)
         self.bg_label.place(relwidth=1, relheight=1)
 
@@ -120,35 +119,103 @@ class MainApp:
         self.aka_entry = tk.Entry(self.root, font=("Courier New", 20), justify="center")
         self.aka_entry.place(relx=0.75, rely=0.1, anchor="center", width=300)
 
-        ao_frame = tk.Frame(self.root, bg="red", bd=5, relief="raised")
+        ao_frame = tk.Frame(self.root, bg="blue", bd=5, relief="raised")
         ao_frame.place(relx=0.0, rely=0.2, relwidth=0.5, relheight=0.6)
 
         self.ao_score = tk.IntVar(value=0)
-        tk.Label(ao_frame, text="Ao", font=("Courier New", 28), bg="red", fg="white").pack()
-        tk.Label(ao_frame, textvariable=self.ao_score, font=("Courier New", 72), bg="red", fg="white").pack()
-        tk.Button(ao_frame, text="+1", font=("Courier New", 20),
-                  command=lambda: self.ao_score.set(self.ao_score.get() + 1)).pack(pady=10)
-        tk.Button(ao_frame, text="-1", font=("Courier New", 20),
-                  command=lambda: self.ao_score.set(self.ao_score.get() - 1)).pack(pady=10)
-        tk.Button(ao_frame, text="Shikaku", font=("Courier New", 20),
+        tk.Label(ao_frame, text="Ao", font=("Courier New", 28), bg="blue", fg="white").pack()
+        tk.Label(ao_frame, textvariable=self.ao_score, font=("Courier New", 150), bg="blue", fg="white").pack()
+
+        ao_button_frame = tk.Frame(ao_frame, bg="blue")
+        ao_button_frame.pack(pady=10)
+        tk.Button(ao_button_frame, text="+1", font=("Courier New", 20), bg="green", fg="white",
+                  command=lambda: self.ao_score.set(self.ao_score.get() + 1)).pack(side="left", padx=10)
+        tk.Button(ao_button_frame, text="-1", font=("Courier New", 20), bg="red", fg="white",
+                  command=lambda: self.ao_score.set(self.ao_score.get() - 1)).pack(side="left", padx=10)
+
+        tk.Button(ao_frame, text="Shikaku", font=("Courier New", 20), bg="chocolate", fg="white",
                   command=lambda: messagebox.showinfo("Shikaku", f"Shikaku Ao: {self.ao_entry.get()}")).pack(pady=5)
         tk.Button(ao_frame, text="Kikken", font=("Courier New", 20),
                   command=lambda: messagebox.showinfo("Kikken", f"Kikken Ao: {self.ao_entry.get()}")).pack(pady=5)
 
-        aka_frame = tk.Frame(self.root, bg="blue", bd=5, relief="raised")
+        aka_frame = tk.Frame(self.root, bg="red", bd=5, relief="raised")
         aka_frame.place(relx=0.5, rely=0.2, relwidth=0.5, relheight=0.6)
 
         self.aka_score = tk.IntVar(value=0)
-        tk.Label(aka_frame, text="Aka", font=("Courier New", 28), bg="blue", fg="white").pack()
-        tk.Label(aka_frame, textvariable=self.aka_score, font=("Courier New", 72), bg="blue", fg="white").pack()
-        tk.Button(aka_frame, text="+1", font=("Courier New", 20),
-                  command=lambda: self.aka_score.set(self.aka_score.get() + 1)).pack(pady=10)
-        tk.Button(aka_frame, text="-1", font=("Courier New", 20),
-                  command=lambda: self.aka_score.set(self.aka_score.get() - 1)).pack(pady=10)
-        tk.Button(aka_frame, text="Shikaku", font=("Courier New", 20),
+        tk.Label(aka_frame, text="Aka", font=("Courier New", 28), bg="red", fg="white").pack()
+        tk.Label(aka_frame, textvariable=self.aka_score, font=("Courier New", 150), bg="red", fg="white").pack()
+
+        aka_button_frame = tk.Frame(aka_frame, bg="red")
+        aka_button_frame.pack(pady=10)
+        tk.Button(aka_button_frame, text="+1", font=("Courier New", 20), bg="green", fg="white",
+                  command=lambda: self.aka_score.set(self.aka_score.get() + 1)).pack(side="left", padx=10)
+        tk.Button(aka_button_frame, text="-1", font=("Courier New", 20), bg="red", fg="white",
+                  command=lambda: self.aka_score.set(self.aka_score.get() - 1)).pack(side="left", padx=10)
+
+        tk.Button(aka_frame, text="Shikaku", font=("Courier New", 20), bg="chocolate", fg="white",
                   command=lambda: messagebox.showinfo("Shikaku", f"Shikaku Aka: {self.aka_entry.get()}")).pack(pady=5)
         tk.Button(aka_frame, text="Kikken", font=("Courier New", 20),
                   command=lambda: messagebox.showinfo("Kikken", f"Kikken Aka: {self.aka_entry.get()}")).pack(pady=5)
+
+        self.time_var = tk.StringVar(value="00:00")
+        self.time_left = 0
+        self.timer_running = False
+
+        timer_frame = tk.Frame(self.root, bg="black", bd=10, relief="ridge")
+        timer_frame.place(relx=0.5, rely=0.85, anchor="center", relwidth=0.3, relheight=0.1)
+
+        timer_label = tk.Label(timer_frame, textvariable=self.time_var,
+                               font=("Courier New", 48), bg="black", fg="white")
+        timer_label.pack(expand=True, fill="both")
+
+        tk.Button(self.root, text="Start", font=("Courier New", 18), width=8,
+                  bg="green", fg="white", command=self.start_timer).place(relx=0.4, rely=0.95, anchor="center")
+        tk.Button(self.root, text="Stop", font=("Courier New", 18), width=8,
+                  bg="blue", fg="white", command=self.stop_timer).place(relx=0.5, rely=0.95, anchor="center")
+        tk.Button(self.root, text="Reset", font=("Courier New", 18), width=8,
+                  bg="red", fg="white", command=self.reset_timer).place(relx=0.6, rely=0.95, anchor="center")
+
+        exit_button = tk.Button(
+            self.root,
+            text="X",
+            font=("Courier New", 16, "bold"),
+            bg="red",
+            fg="white",
+            relief="raised",
+            command=self.root.quit
+        )
+        exit_button.place(relx=0.97, rely=0.02, anchor="ne")
+
+    def update_timer(self):
+        if self.time_left > 0 and self.timer_running:
+            self.time_left -= 1
+            minutes = self.time_left // 60
+            seconds = self.time_left % 60
+            self.time_var.set(f"{minutes:02d}:{seconds:02d}")
+            self.root.after(1000, self.update_timer)
+        else:
+            self.timer_running = False
+            if self.time_left == 0:
+                simpan_data(
+                    ao_name=self.ao_entry.get(),
+                    ao_score=self.ao_score.get(),
+                    aka_name=self.aka_entry.get(),
+                    aka_score=self.aka_score.get()
+                )
+                messagebox.showinfo("Waktu Habis", "Timer selesai! Skor telah disimpan.")
+
+    def start_timer(self):
+        if not self.timer_running:
+            self.time_left = 10
+            self.timer_running = True
+            self.update_timer()
+
+    def stop_timer(self):
+        self.timer_running = False
+
+    def reset_timer(self):
+        self.time_left = 0
+        self.time_var.set("00:00")
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 
 class MainApp:
@@ -169,7 +169,7 @@ class MainApp:
 
         title_label = tk.Label(
             frame,
-            text="Masukkan Nama:",
+            text="Masukkan Nama dan NPM:",
             font=("courier new", 24),
             bg="sky blue",
             fg="black"
@@ -193,6 +193,23 @@ class MainApp:
         )
         self.name_entry.pack(pady=5)
 
+        npm_label = tk.Label(
+            frame,
+            text="NPM:",
+            font=("courier new", 24),
+            bg="sky blue",
+            fg="black"
+        )
+        npm_label.pack(anchor="w")
+
+        self.npm_entry = tk.Entry(
+            frame,
+            font=("courier new", 20),
+            width=30,
+            relief="raised"
+        )
+        self.npm_entry.pack(pady=5)
+
         start_btn = tk.Button(
             frame,
             text="MULAI GAME",
@@ -200,10 +217,23 @@ class MainApp:
             bg="sky blue",
             fg="black",
             relief="raised",
+            command=self.process_player_info
         )
         start_btn.pack(pady=(20, 0))
+
+    def process_player_info(self):
+        name = self.name_entry.get().strip()
+        npm = self.npm_entry.get().strip()
+
+        if not name or not npm:
+            messagebox.showwarning("Peringatan", "Nama dan NPM harus diisi!")
+            return
+
+        self.player_name = name
+        self.player_npm = npm
+        messagebox.showinfo("Info", f"Selamat datang {name} ({npm})! Game dimulai.")
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = MainApp(root)
-    root.mainloop()
+    root.mainloop()

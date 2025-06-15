@@ -1,5 +1,4 @@
-# Project-SDA-Kelompok-13 🎮Game Edukasi Matematika
-
+# Project-SDA-Kelompok-13 🎮
 Penjelasan Project 📌
 
 Project SDA - Game Edukasi Matematika ialah sebuah aplikasi GUI interaktif berbasis Python yang dirancang sebagai bagian dari tugas mata kuliah Struktur Data dan Algoritma. Aplikasi/Project ini menerapkan konsep game edukatif dengan tujuan melatih keterampilan berhitung dasar pengguna melalui soal-soal matematika sederhana.  

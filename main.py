@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
+import csv
 
 class MainApp:
     def __init__(self, root):
@@ -135,7 +136,7 @@ class MainApp:
             pady=30,
             justify="left"
         )
-        perkenalan_label.place(relx=0.5, rely=0.35, anchor="center")
+        perkenalan_label.place(relx=0.5, rely=0.4, anchor="center")
 
         next_button = tk.Button(
             self.root,
@@ -231,9 +232,18 @@ class MainApp:
 
         self.player_name = name
         self.player_npm = npm
-        messagebox.showinfo("Info", f"Selamat datang {name} ({npm})! Game dimulai.")
 
-if __name__ == "__main__":
+        self.save_to_csv(name, npm)
+
+        messagebox.showinfo("Info", f"Selamat datang {name} ({npm})! Game dimulai.")
+        self.show_question()
+
+    def save_to_csv(self, name, npm):
+        with open("nyoba.csv", mode="a", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow([name, npm])
+
+if __name__ == "__main__": 
     root = tk.Tk()
     app = MainApp(root)
     root.mainloop()
